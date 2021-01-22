@@ -1,0 +1,17 @@
+nav{
+    background-color: #00072c;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+h1{
+    color: blue;
+}
+ul{
+    display: flex;
+}
+li{
+    list-style: none;
+    margin-right: 30px;
+}
