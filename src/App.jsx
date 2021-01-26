@@ -1,26 +1,15 @@
-import logo from './logo.png';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from './components/navbar/navbar';//NavBar marki
-import BnavBar from './components/bootsnavbar/bootnavbar'
+import BnavBar from './components/bootsnavbar';
+import ItemListContainer from './containers/ItemListContainer'
+import Greeting from './components/greeting'
 
 const App = () => {
   return (
     <div className="App">
-      <BnavBar/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://www.thrashermagazine.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Una pagina de skate real
-        </a>
-      </header>
+      <BnavBar link={"https://www.thrashermagazine.com/"}/>
+      <ItemListContainer><Greeting/></ItemListContainer>    
     </div>
   );
 }
-
 export default App;

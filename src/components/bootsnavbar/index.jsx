@@ -1,16 +1,18 @@
 import React from 'react'
-import logo from './logo.png'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import wheel from './wheel.png';
+import CartWidget from "./CartWidget"
 
-let bootnavbar = () => {
+
+const bootnavbar = ({ link }) => {
     return (
         <Navbar bg="dark" expand="md" variant="dark">
             <Navbar.Brand href="#home">
                 <img
                     alt=""
-                    src={logo}
+                    src={wheel}
                     width="30"
                     height="30"
                     className="d-inline-block align-top"
@@ -28,11 +30,15 @@ let bootnavbar = () => {
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="https://www.thrashermagazine.com/" target="_blank">Una pagina de skate real</NavDropdown.Item>
+                        <NavDropdown.Item href={link} target="_blank">Una pagina de skate real</NavDropdown.Item>
                     </NavDropdown>
-                </Nav>
+                </Nav>    
             </Navbar.Collapse>
+            <ul class="navbar-nav mr-auto">
+                <CartWidget />
+            </ul>
         </Navbar>
+        
     )
 }
 export default bootnavbar

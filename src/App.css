@@ -2,14 +2,14 @@
   text-align: left;
 }
 
-.App-logo {
+.wheel {
   height: 40vmin;
   pointer-events: none;
-  animation: App-logo-spin infinite 5s linear;
+  animation: wheel-spin infinite 5s linear;
 }
 
-.App-header {
-  background-color: #64a6e4;
+.first-section {
+  background-color: #e46464;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   color: rgb(34,34,50);
 }
 
-@keyframes App-logo-spin {
+@keyframes wheel-spin {
   from {
     transform: rotate(0deg);
   }
