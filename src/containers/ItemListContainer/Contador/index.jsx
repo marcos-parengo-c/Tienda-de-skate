@@ -7,7 +7,7 @@ const Contador = ({ firstStock }) => {
     const [stock, setStock] = useState(firstStock)
 
     return (
-        <Col>
+        <Col sm={12}>
             <div className="card">
                 <div class="card-body">
                     <h5 className="card-title">Producto</h5>
