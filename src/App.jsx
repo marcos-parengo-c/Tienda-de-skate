@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="App">
       <BnavBar link={"https://www.thrashermagazine.com/"}/>
-      <ItemListContainer greeting="Hola cliente"/>    
+      <ItemListContainer greeting="Lugar del carrito?"/>    
     </div>
   );
 }

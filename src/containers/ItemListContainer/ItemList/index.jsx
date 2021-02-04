@@ -8,26 +8,22 @@ const ItemList = ({ itemProp }) => {
 
     const [item,setItem] = useState([])
 
-	const promesa = new Promise((result, reject) => {
-		setTimeout(function(){ result(itemProp)}, 3000);		
-	})
-    
-	promesa.then(result => {
-        console.log(result) 
-        setItem(result)
-	}, err => {
-		console.log(err) 
-	}).catch(err => {console.log("atrapado")
-					}).finally(()=>{
-		console.log("finalizado")
-    })
-    
+    const promesa = new Promise((result, reject) => {
+            setTimeout(function(){ result(itemProp)}, 100);			
+        })    
+        promesa.then(result => {
+            setItem(result)
+        }, err => {
+            console.log(err) 
+        }).catch(err => {console.log("atrapado")
+                        }).finally(()=>{
+        })
     
     return (
         <>
             <Col sm={8}>
                 <Row>
-                    {item.map((u, i) => { ; return (<Item name={u.name} price={u.price} image={u.image} />) })}
+                    {item.map((u, i) => { ; return (<Item name={u.name} price={u.price} image={u.image} stock={u.stock}/>) })}
                 </Row>
             </Col>
         </>
