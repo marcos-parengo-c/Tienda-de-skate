@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Contador from './Contador'
+import ItemCount from './ItemCount'
 import './index.css';
 
+const onAdd=()=>{
+    console.log("algo")
+}
+
 const Item = ({ name, price, image, stock }) => {
+    const [initial] = useState(0)
+    
+
     return (
         <>
             <Col sm={4}>
@@ -14,13 +21,14 @@ const Item = ({ name, price, image, stock }) => {
                     <div className="card-body">
                         <h5 className="card-title">{name}</h5>
                         <p className="card-text">$ {price}</p>
-                        <Contador firstStock={stock} />
+                        <ItemCount firstStock={stock} initial={initial} onAdd={onAdd}/>
                     </div>
-
                 </div>
             </Col>
         </>
     )
 }
+
+
 
 export default Item

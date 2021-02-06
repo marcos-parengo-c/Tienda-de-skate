@@ -2,9 +2,8 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import wheel from './wheel.png';
 import CartWidget from "./CartWidget"
-
+import logo from './logo.png'
 
 const bootnavbar = ({ link }) => {
     return (
@@ -12,7 +11,7 @@ const bootnavbar = ({ link }) => {
             <Navbar.Brand href="#home">
                 <img
                     alt=""
-                    src={wheel}
+                    src={logo}
                     width="30"
                     height="30"
                     className="d-inline-block align-top"
