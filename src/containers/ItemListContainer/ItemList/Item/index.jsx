@@ -6,21 +6,20 @@ import ItemCount from './ItemCount'
 import './index.css';
 
 
-const onAdd = (contador, stock, setContador,setStock)=>{
-	return ()=>{
-        if (contador===0){
-            alert("No quedan mas articulos")
-        }else{
-            setContador(0);
-            setStock(stock - contador);
-            console.log("se agregaron "+contador+" productos")
-        } 
+const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState) => {
+    return () => {
+        setContador(0);
+        setStock(stock - contador);
+        console.log("se agregaron " + contador + " productos")
+        if (stock - contador === 0) {
+            setButtonState(true)
+        }
     }
 }
 
 const Item = ({ name, price, image, stock }) => {
     const [initial] = useState(0)
-    
+
     return (
         <>
             <Col sm={3}>
@@ -29,14 +28,12 @@ const Item = ({ name, price, image, stock }) => {
                     <div className="card-body">
                         <h5 className="card-title">{name}</h5>
                         <p className="card-text">$ {price}</p>
-                        <ItemCount firstStock={stock} initial={initial} onAdd={onAdd}/>
+                        <ItemCount firstStock={stock} initial={initial} onAdd={onAdd} />
                     </div>
                 </div>
             </Col>
         </>
     )
 }
-
-
 
 export default Item

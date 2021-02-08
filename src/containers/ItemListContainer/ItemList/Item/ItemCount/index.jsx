@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
 const Contador = ({ firstStock, initial , onAdd}) => {
     const [contador, setContador] = useState(initial)
     const [stock, setStock] = useState(firstStock)
+    const [buttonState, setButtonState] = useState(false)
 
     return (
         <>
@@ -25,11 +26,11 @@ const Contador = ({ firstStock, initial , onAdd}) => {
                     <Button variant="outline-light" size="lg" block onClick={() => {
                         if (contador < stock) {
                             setContador(contador + 1)
-                        } else { alert('No podes añadir mas que estos elementos ya que el stock es de ' + stock) }
+                        } else { alert('No podes añadir mas de este producto ya que el stock es de ' + stock) }
                     }}>+</Button>
                 </ButtonGroup>
-                <Button variant="outline-light" size="lg" block
-                    onClick={onAdd(contador,stock,setContador,setStock)}>Add to cart
+                <Button variant="outline-light" size="lg" block disabled={buttonState}
+                    onClick={onAdd(contador,stock,setContador,setStock,setButtonState,buttonState)}>Add to cart
                 </Button>
             </div>
         </>
