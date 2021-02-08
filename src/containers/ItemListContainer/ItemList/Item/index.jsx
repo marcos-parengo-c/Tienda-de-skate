@@ -5,17 +5,25 @@ import Card from 'react-bootstrap/Card';
 import ItemCount from './ItemCount'
 import './index.css';
 
-const onAdd=()=>{
-    console.log("algo")
+
+const onAdd = (contador, stock, setContador,setStock)=>{
+	return ()=>{
+        if (contador===0){
+            alert("No quedan mas articulos")
+        }else{
+            setContador(0);
+            setStock(stock - contador);
+            console.log("se agregaron "+contador+" productos")
+        } 
+    }
 }
 
 const Item = ({ name, price, image, stock }) => {
     const [initial] = useState(0)
     
-
     return (
         <>
-            <Col sm={4}>
+            <Col sm={3}>
                 <div className="card text-white bg-dark mb-3" >
                     <Card.Img variant="top" src={image} />
                     <div className="card-body">

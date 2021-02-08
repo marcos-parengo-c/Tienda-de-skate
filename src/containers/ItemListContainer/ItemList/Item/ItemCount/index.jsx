@@ -29,14 +29,7 @@ const Contador = ({ firstStock, initial , onAdd}) => {
                     }}>+</Button>
                 </ButtonGroup>
                 <Button variant="outline-light" size="lg" block
-                    onClick={() => {
-                        setContador(0);
-                        setStock(stock - contador)
-                    }
-                    }>Add to cart
-                </Button>
-                <Button variant="outline-light" size="lg" block
-                    onClick={onAdd}>Add to cart
+                    onClick={onAdd(contador,stock,setContador,setStock)}>Add to cart
                 </Button>
             </div>
         </>
