@@ -3,21 +3,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartWidget from "./CartWidget"
-import logo from './logo.png'
 
 const bootnavbar = ({ link }) => {
     return (
-        <Navbar bg="dark" expand="md" variant="dark">
-            <Navbar.Brand href="#home">
-                <img
+        <Navbar bg="dark" expand="md" variant="dark" style={{paddingLeft:"30px"}}>
+            <Navbar.Brand href="#home" >
+                <img 
                     alt=""
-                    src={logo}
-                    width="30"
+                    src="/images/banner.png"
+                    width="60"
                     height="30"
-                    className="d-inline-block align-top"
+                    className="d-inline-block align-top"        
                 />
                 {' '}
-            SkateShop
+                SkateShop
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
