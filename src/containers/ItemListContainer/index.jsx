@@ -18,7 +18,7 @@ const ItemListContainer = ({ children, greeting }) => {
             "brand": "Bones",
         },
         {
-            "name": "Ruedas Bones New Ground 52mm",
+            "name": "Ruedas Bones OF New Ground 52mm",
             "price": 3711,
             "stock": 10,
             "image": "images/products/Rueda2.jpg",
@@ -34,7 +34,7 @@ const ItemListContainer = ({ children, greeting }) => {
             "brand": "Spitfire",
         },
         {
-            "name": "Lija Grizzly OG black microperforada",
+            "name": "Lija micro perforada Grizzly OG black",
             "price": 1000,
             "stock": 10,
             "image": "images/products/Lija.jpg",
@@ -42,7 +42,7 @@ const ItemListContainer = ({ children, greeting }) => {
             "brand": "Grizzly",
         },
         {
-            "name": "Lija Grizzly Tie-Dye Cutout Blue",
+            "name": "Lija Grizzly Tie-Dye",
             "price": 867,
             "stock": 10,
             "image": "images/products/Lija2.jpg",
@@ -66,7 +66,7 @@ const ItemListContainer = ({ children, greeting }) => {
             "brand": "Element",
         },
         {
-            "name": "Tabla Creature Pappo Blues vol 2",
+            "name": "Tabla Creature Pappo Blues",
             "price": 5000,
             "stock": 10,
             "image": "images/products/Tabla2.jpg",

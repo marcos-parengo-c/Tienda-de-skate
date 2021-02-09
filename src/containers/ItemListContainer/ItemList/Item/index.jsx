@@ -22,8 +22,8 @@ const Item = ({ item }) => {
 
     return (
         <>
-            <Col lg={3} md={4} sm={6}>
-                <div className="card text-white bg-dark mb-3">
+            <Col lg={3} md={4} sm={6} style={{marginBottom:"25px"}}>
+                <div className="card text-white bg-dark mb-3 h-100">
                     <Card.Img variant="top" src={item.image} />
                     <div className="card-body">
                         <h5 className="card-title">{item.name}</h5>
