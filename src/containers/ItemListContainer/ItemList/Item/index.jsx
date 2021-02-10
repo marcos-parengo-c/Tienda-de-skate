@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card';
 import ItemCount from './ItemCount'
 import './index.css';
 
-
 const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState) => {
     return () => {
         setContador(0);
