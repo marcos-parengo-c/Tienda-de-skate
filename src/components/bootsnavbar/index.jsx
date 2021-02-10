@@ -8,7 +8,7 @@ import CartWidget from "./CartWidget"
 const bootnavbar = ({ linkTo }) => {
     return (
         <Navbar bg="dark" expand="md" variant="dark" style={{ paddingLeft: "30px" }}>
-            <Link to={"/"}>
+            <Link to={"/"} style={{ textDecoration: 'none' }}>
                 <Navbar.Brand href="#home" >
                     <img
                         alt=""
@@ -18,21 +18,28 @@ const bootnavbar = ({ linkTo }) => {
                         className="d-inline-block align-top"
                     />
                     {' '}
-                SkateShop
+                    SkateShop
                 </Navbar.Brand>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link>itemDetail</Nav.Link>
+                    <Link to={"./"}>
+                        <Nav.Link href="#a">Home</Nav.Link>
+                    </Link>
+                    <Link to={"./itemDetail"}>
+                        <Nav.Link href="#a">itemDetail</Nav.Link>
+                    </Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <Link to={"./itemDetail"}>
-                            <NavDropdown.Item href="#action/3.1">itemDetail</NavDropdown.Item>
+                            <NavDropdown.Item href="#a">itemDetail</NavDropdown.Item>
                         </Link>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
+                        <Link to={"./itemDetail"}>
+                            <NavDropdown.Item href="#a">itemDetail</NavDropdown.Item>
+                        </Link>
+                        <Link to={"./itemDetail"}>
+                            <NavDropdown.Item href="#a">itemDetail</NavDropdown.Item>
+                        </Link>
                         <NavDropdown.Item href={linkTo} target="_blank">Una pagina de skate real</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
