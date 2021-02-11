@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -16,20 +17,25 @@ const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonSta
     }
 }
 
-const Item = ({ item }) => {
+const Item = ({ item, is }) => {
     const [initial] = useState(0)
-
+    console.log(is)
     return (
         <>
-            <Col lg={3} md={4} sm={6} style={{marginBottom:"25px"}}>
-                <div className="card text-white bg-dark mb-3 h-100">
-                    <Card.Img variant="top" src={item.image} />
-                    <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
-                        <p className="card-text">$ {item.price}</p>
+            <Col lg={3} md={4} sm={6} className="mb-3">
+
+                <Card bg="dark" text="light" className="h-100">
+                    <Link to={`./ItemDetail/${item.name}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                        <Card.Img variant="top" src={item.image} />
+                        <Card.Body>
+                            <Card.Title>{item.name}</Card.Title>
+                            <Card.Title>${item.price}</Card.Title>
+                        </Card.Body>
+                    </Link>
+                    <Card.Footer>
                         <ItemCount firstStock={item.stock} initial={initial} onAdd={onAdd} />
-                    </div>
-                </div>
+                    </Card.Footer>
+                </Card>
             </Col>
         </>
     )

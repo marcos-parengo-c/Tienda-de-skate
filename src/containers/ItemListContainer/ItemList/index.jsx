@@ -23,7 +23,7 @@ const ItemList = ({ itemProp }) => {
         <>
             <Col sm={8}>
                 <Row>
-                    {item.map((u, i) => { ; return (<Item key={i} item={u}/>) })}
+                    {item.map((u, i) => { ; return (<Item key={i} is={i} item={u}/>) })}
                 </Row>
             </Col>
         </>

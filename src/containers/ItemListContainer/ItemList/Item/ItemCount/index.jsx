@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -9,11 +9,17 @@ const Contador = ({ firstStock, initial , onAdd}) => {
     const [contador, setContador] = useState(initial)
     const [stock, setStock] = useState(firstStock)
     const [buttonState, setButtonState] = useState(false)
-
+    useEffect(() => {
+        setStock(firstStock);
+        return () => {
+            console.log("Will Unmount")
+        }
+    }, [firstStock])
+    console.log("Will Render")
     return (
         <>
             <p className="card-text">{stock} productos diponibles.</p>
-            <div className="d-grid gap-2 col-12 ml-auto">
+            <div className="d-grid gap-2 col-12 ml-auto mb-2">
                 <ButtonGroup aria-label="Basic example" size="sm">
                     <Button variant="outline-light" size="lg" block onClick={() => {
                         if (contador > 0) { setContador(contador - 1) }
