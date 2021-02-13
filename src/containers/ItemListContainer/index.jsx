@@ -9,15 +9,16 @@ import ItemList from './ItemList'
 const ItemListContainer = ({ children, greeting, listaDeItems }) => {
 
     const { id } = useParams();
-    const [items,setItems] = useState(listaDeItems)
+    const [items, setItems] = useState(listaDeItems)
 
     useEffect(() => {
-        if (typeof id === 'undefined') { 
-                setItems(listaDeItems)
-            } else {
-            console.log("category " + id);
-            setItems(items.filter(items => items.brand === id));
-            }return () => {}}, [id, items, listaDeItems])
+        if (typeof id === 'undefined') {
+            setItems(listaDeItems)
+        } else {
+            setItems(listaDeItems.filter(items => items.brand === id));
+        } return () => {
+        }
+    }, [id,listaDeItems])
 
     return (
         <div className="container">
@@ -33,7 +34,4 @@ const ItemListContainer = ({ children, greeting, listaDeItems }) => {
     )
 }
 
-ItemListContainer.defaultProps = {
-    id: ""
-};
 export default ItemListContainer
