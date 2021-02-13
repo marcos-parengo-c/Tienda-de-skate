@@ -21,10 +21,8 @@ const Info = ({ item}) => {
     useEffect(() => {
         setItemRecibido(item);
         return () => {
-            console.log("Will Unmount")
         }
     }, [item])
-    console.log("Will Render")
     
     return (
         <Col sm={6} >

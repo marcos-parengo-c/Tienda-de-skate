@@ -11,11 +11,10 @@ const Contador = ({ firstStock, initial , onAdd}) => {
     const [buttonState, setButtonState] = useState(false)
     useEffect(() => {
         setStock(firstStock);
-        return () => {
-            console.log("Will Unmount")
+        return () => {  
         }
     }, [firstStock])
-    console.log("Will Render")
+
     return (
         <>
             <p className="card-text">{stock} productos diponibles.</p>
@@ -25,7 +24,7 @@ const Contador = ({ firstStock, initial , onAdd}) => {
                         if (contador > 0) { setContador(contador - 1) }
                     }}>-</Button>
                     <InputGroup >
-                        <FormControl
+                        <FormControl readOnly
                             value={contador}
                         />
                     </InputGroup>

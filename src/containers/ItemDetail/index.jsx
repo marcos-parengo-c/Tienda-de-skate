@@ -151,8 +151,6 @@ const ItemDetail = () => {
     
     const { id } = useParams();
     useEffect(() => {
-        console.log("Object with that name ("+id);
-        console.log((FullItem.find(FullItem => FullItem.name === id)))
         setItemARend(FullItem.find(FullItem => FullItem.name === id))
         getItems(itemARend,setItemRecibido)
         return () => {
@@ -164,7 +162,7 @@ const ItemDetail = () => {
         <div className="container">
             <Row>
                 <Col sm={6}>
-                    <Carousel prevLabel="" nextLabel="" fade="true" className="border border-dark" >
+                    <Carousel prevLabel="" nextLabel="" fade={true} className="border border-dark" >
                         <Carousel.Item>
                             <Image src={itemRecibido.image} thumbnail className="d-block w-100 border-0" />
                         </Carousel.Item>
