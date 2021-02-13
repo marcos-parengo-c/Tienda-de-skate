@@ -21,7 +21,7 @@ const Item = ({ item, is }) => {
     const [initial] = useState(0)
     return (
         <>
-            <Col lg={3} md={4} sm={6} className="mb-4">
+            <Col xl={2} lg={3} md={3} sm={4} className="mb-4">
                 <Card bg="dark" text="light" className="h-100">
                     <Link to={`/ItemDetail/${item.name}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                         <Card.Img variant="top" src={item.image} />

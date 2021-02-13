@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import BnavBar from './components/bootsnavbar';
 import ItemListContainer from './containers/ItemListContainer'
 import ItemDetail from './containers/ItemDetail'
+import Cart from './containers/Cart'
 
 const App = () => {
   const [listaDeItems] = useState([{
@@ -134,13 +135,16 @@ const App = () => {
         <BnavBar linkTo={"https://www.thrashermagazine.com/"} />
         <Switch>
           <Route exact path="/">
-          <ItemListContainer listaDeItems={listaDeItems} greeting="Lugar del carrito?" />
+          <ItemListContainer listaDeItems={listaDeItems} />
           </Route>
           <Route exact path="/category/:id">
-          <ItemListContainer listaDeItems={listaDeItems} greeting="Lugar del carrito?" />
+          <ItemListContainer listaDeItems={listaDeItems} />
           </Route>
           <Route exact path="/itemDetail/:id">
             <ItemDetail listaDeItems={listaDeItems}/>
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
           </Route>
         </Switch>
       </div>

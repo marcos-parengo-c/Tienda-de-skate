@@ -35,7 +35,7 @@ const bootnavbar = ({ linkTo }) => {
                 </Nav>
             </Navbar.Collapse>
             <ul className="navbar-nav mr-auto">
-                <CartWidget />
+                <CartWidget  />
             </ul>
         </Navbar>
 

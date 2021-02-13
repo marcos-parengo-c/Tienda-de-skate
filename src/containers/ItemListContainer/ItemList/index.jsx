@@ -21,7 +21,7 @@ const ItemList = ({ itemProp }) => {
     
     return (
         <>
-            <Col sm={8}>
+            <Col sm={12}>
                 <Row>
                     {item.map((u, i) => { ; return (<Item key={i} is={i} item={u}/>) })}
                 </Row>

@@ -4,19 +4,35 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'; 
 import ItemCount from './ItemCount'
 
-const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState) => {
+const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay) => {
     return () => {
         setContador(0);
         setStock(stock - contador);
         console.log("se agregaron " + contador + " productos")
         if (stock - contador === 0) {
             setButtonState(true)
+            setDisplay(false)
         }
+    }
+}
+
+const minus = (contador, setContador) => {
+    return () => {
+        if (contador > 0) { setContador(contador - 1) }
+    }
+}
+
+const plus = (contador, stock, setContador) => {
+    return () => {
+        if (contador < stock) {
+            setContador(contador + 1)
+        } else { alert('No podes añadir mas de este producto ya que el stock es de ' + stock) }
     }
 }
 
 const Info = ({ item}) => {
     const [itemRecibido, setItemRecibido] = useState(item)
+
     
     useEffect(() => {
         setItemRecibido(item);
@@ -33,7 +49,7 @@ const Info = ({ item}) => {
                     <Card.Text>{itemRecibido.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <ItemCount firstStock={itemRecibido.stock} initial={0} onAdd={onAdd} />
+                    <ItemCount firstStock={itemRecibido.stock} initial={0} onAdd={onAdd} plus={plus} minus={minus}/>
                 </Card.Footer>
             </Card>   
         </Col>      

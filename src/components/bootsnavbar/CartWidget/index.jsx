@@ -1,10 +1,11 @@
 import React from 'react'
 import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 import cart from "./cart.png"
 
 const CartWidget = () => {
     return (
-        <Nav.Link href="#cart">
+        <Nav.Link as={Link} to={"/cart"}>
             <img
                 alt=""
                 src={cart}
