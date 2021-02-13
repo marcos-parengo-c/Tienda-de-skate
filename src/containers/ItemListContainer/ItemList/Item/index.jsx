@@ -6,14 +6,29 @@ import Card from 'react-bootstrap/Card';
 import ItemCount from './ItemCount'
 import './index.css';
 
-const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState) => {
+const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay) => {
     return () => {
         setContador(0);
         setStock(stock - contador);
         console.log("se agregaron " + contador + " productos")
         if (stock - contador === 0) {
             setButtonState(true)
+            setDisplay(false)
         }
+    }
+}
+
+const minus = (contador, setContador) => {
+    return () => {
+        if (contador > 0) { setContador(contador - 1) }
+    }
+}
+
+const plus = (contador, stock, setContador) => {
+    return () => {
+        if (contador < stock) {
+            setContador(contador + 1)
+        } else { alert('No podes añadir mas de este producto ya que el stock es de ' + stock) }
     }
 }
 
@@ -31,7 +46,7 @@ const Item = ({ item, is }) => {
                         </Card.Body>
                     </Link>
                     <Card.Footer>
-                        <ItemCount firstStock={item.stock} initial={initial} onAdd={onAdd} />
+                       <ItemCount firstStock={item.stock} initial={0} onAdd={onAdd} plus={plus} minus={minus}/>
                     </Card.Footer>
                 </Card>
             </Col>
