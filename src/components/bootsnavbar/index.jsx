@@ -7,7 +7,7 @@ import CartWidget from "./CartWidget"
 
 const bootnavbar = ({ linkTo }) => {
     return (
-        <Navbar bg="dark" expand="md" variant="dark" style={{ paddingLeft: "30px" }}>
+        <Navbar bg="dark" expand="md" variant="dark" className="px-5">
             <Navbar.Brand as={Link} to={"/"}>
                 <img
                     alt=""
@@ -21,7 +21,7 @@ const bootnavbar = ({ linkTo }) => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+                <Nav >
                     <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
                     <NavDropdown title="Categories" id="basic-nav-dropdown">
                         <NavDropdown.Item as={Link} to={"/category/Bones"}>Bones</NavDropdown.Item>
@@ -33,10 +33,11 @@ const bootnavbar = ({ linkTo }) => {
                         <NavDropdown.Item href={linkTo} target="_blank">Una pagina de skate real</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
+                <Nav className="justify-content-end" style={{ width: "100%" }}>
+                    <CartWidget/>
+                </Nav>
             </Navbar.Collapse>
-            <ul className="navbar-nav mr-auto">
-                <CartWidget  />
-            </ul>
+
         </Navbar>
 
     )
