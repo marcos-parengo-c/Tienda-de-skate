@@ -46,7 +46,7 @@ const Item = ({ item, is }) => {
                         </Card.Body>
                     </Link>
                     <Card.Footer>
-                       <ItemCount firstStock={item.stock} initial={0} onAdd={onAdd} plus={plus} minus={minus}/>
+                       <ItemCount firstStock={item.stock} initial={initial} onAdd={onAdd} plus={plus} minus={minus}/>
                     </Card.Footer>
                 </Card>
             </Col>
