@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartWidget from "./CartWidget"
-import CartModal from "./CartModal"
 
 const bootnavbar = ({ linkTo }) => {
     return (
@@ -36,7 +35,6 @@ const bootnavbar = ({ linkTo }) => {
                 </Nav>
                 <Nav className="justify-content-end" style={{ width: "100%" }}>
                     <CartWidget/>
-                    <CartModal />
                 </Nav>
             </Navbar.Collapse>
 
