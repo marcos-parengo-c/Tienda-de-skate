@@ -4,11 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'; 
 import ItemCount from './ItemCount'
 
-const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay) => {
+const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay,carrito,setCarrito,item) => {
     return () => {
         setContador(0);
         setStock(stock - contador);
-        console.log("se agregaron " + contador + " productos")
+        setCarrito([...carrito,{"Item":item,"Cantidad":contador}])
         if (stock - contador === 0) {
             setButtonState(true)
             setDisplay(false)
@@ -30,7 +30,7 @@ const plus = (contador, stock, setContador) => {
     }
 }
 
-const Info = ({ item}) => {
+const Info = ({ item, carrito , setCarrito}) => {
     const [itemRecibido, setItemRecibido] = useState(item)
 
     
@@ -49,7 +49,9 @@ const Info = ({ item}) => {
                     <Card.Text>{itemRecibido.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <ItemCount firstStock={itemRecibido.stock} initial={0} onAdd={onAdd} plus={plus} minus={minus}/>
+                    <ItemCount firstStock={itemRecibido.stock} initial={0} onAdd={onAdd} 
+                    plus={plus} minus={minus} carrito={carrito} setCarrito={setCarrito}
+                    item={item}/>
                 </Card.Footer>
             </Card>   
         </Col>      

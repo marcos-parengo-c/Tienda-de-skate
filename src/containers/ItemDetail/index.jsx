@@ -23,7 +23,7 @@ const getItems = (item, setItemRecibido) => {
 }
 
 const ItemDetail = () => {
-
+    const [carrito,setCarrito] = useState([{}])
     const [FullItem] = useState([{
         "name": "Ruedas Bones Original Formula 54mm",
         "price": 5000,
@@ -153,10 +153,11 @@ const ItemDetail = () => {
     useEffect(() => {
         setItemARend(FullItem.find(FullItem => FullItem.name === id))
         getItems(itemARend,setItemRecibido)
+        console.log(carrito)
         return () => {
             console.log("a");
         }
-    }, [id,FullItem,itemARend])
+    }, [id,FullItem,itemARend,carrito])
 
     return (
         <div className="container">
@@ -174,7 +175,7 @@ const ItemDetail = () => {
                         </Carousel.Item>
                     </Carousel>
                 </Col>
-                <Info item={itemRecibido} />
+                <Info item={itemRecibido}   carrito={carrito} setCarrito={setCarrito}/>
             </Row>
         </div>
     )
