@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Row from 'react-bootstrap/Row';
 import ItemList from './ItemList'
+import { productContext } from '../../context/productContext';
 
 const ItemListContainer = ({ children, greeting, listaDeItems }) => {
 
     const { id } = useParams();
-    const [items, setItems] = useState(listaDeItems)
+    const itemCntxt = useContext(productContext)
+    const [items, setItems] = useState(itemCntxt)
 
     useEffect(() => {
         if (typeof id === 'undefined') {
-            setItems(listaDeItems)
+            setItems(itemCntxt)
         } else {
-            setItems(listaDeItems.filter(items => items.brand === id));
+            setItems(itemCntxt.filter(items => items.brand === id));
         } return () => {
         }
-    }, [id,listaDeItems])
+    }, [id,itemCntxt])
 
     return (
         <div className="container">
