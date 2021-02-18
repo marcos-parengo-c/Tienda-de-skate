@@ -4,9 +4,9 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card'; 
 import ItemCount from './ItemCount'
 
-const Info = ({ item, carrito , setCarrito}) => {
+const Info = ({ item}) => {
     const [itemRecibido, setItemRecibido] = useState(item)
-    
+
     useEffect(() => {
         setItemRecibido(item);
         return () => {
@@ -22,23 +22,22 @@ const Info = ({ item, carrito , setCarrito}) => {
                     <Card.Text>{itemRecibido.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <ItemCount firstStock={itemRecibido.stock} initial={0} onAdd={onAdd} 
-                    plus={plus} minus={minus} carrito={carrito} setCarrito={setCarrito}
-                    item={item}/>
+                    <ItemCount firstStock={itemRecibido.stock} initial={0} 
+                    onAdd={onAdd} plus={plus} minus={minus} item={item}/>
                 </Card.Footer>
             </Card>   
         </Col>      
     )
 }
 
-const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay,carrito,setCarrito,item) => {
+const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay,cart,setCart,item) => {
     return () => {
         if(contador>0){
             setDisplay(false)
         }
         setContador(0);
         setStock(stock - contador);
-        setCarrito([...carrito,{"Item":item,"Cantidad":contador}])
+        setCart([...cart,{"Item":item,"Cantidad":contador}])
         if (stock - contador === 0) {
             setButtonState(true)
         }

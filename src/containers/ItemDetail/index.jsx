@@ -8,23 +8,10 @@ import Image from 'react-bootstrap/Image';
 import Carousel from 'react-bootstrap/Carousel';
 import Info from './Info'
 import { productContext } from '../../context/productContext';
-
-const getItems = (item, setItemRecibido) => {
-    const promesa = new Promise((result, reject) => {
-        setTimeout(function () { result(item) }, 500);
-    })
-    promesa.then(result => {
-        setItemRecibido(result)
-    }, err => {
-        console.log(err)
-    }).catch(err => {
-        console.log("atrapado")
-    }).finally(() => {
-    })
-}
+import { CartContext } from '../../context/cartContext';
 
 const ItemDetail = () => {
-    const [carrito,setCarrito] = useState([])
+    const {cart} = useContext(CartContext)
     const itemCntxt = useContext(productContext)
     const [FullItem] = useState(itemCntxt) 
     const [itemRecibido, setItemRecibido] = useState({})
@@ -34,10 +21,10 @@ const ItemDetail = () => {
     useEffect(() => {
         setItemARend(FullItem.find(FullItem => FullItem.name === id))
         getItems(itemARend,setItemRecibido)
-        console.log(carrito)
+        console.log(cart)
         return () => {
         }
-    }, [id,FullItem,itemARend,carrito])
+    }, [id,FullItem,itemARend,cart])
 
     return (
         <div className="container">
@@ -55,10 +42,24 @@ const ItemDetail = () => {
                         </Carousel.Item>
                     </Carousel>
                 </Col>
-                <Info item={itemRecibido}   carrito={carrito} setCarrito={setCarrito}/>
+                <Info item={itemRecibido} />
             </Row>
         </div>
     )
+}
+
+const getItems = (item, setItemRecibido) => {
+    const promesa = new Promise((result, reject) => {
+        setTimeout(function () { result(item) }, 500);
+    })
+    promesa.then(result => {
+        setItemRecibido(result)
+    }, err => {
+        console.log(err)
+    }).catch(err => {
+        console.log("atrapado")
+    }).finally(() => {
+    })
 }
 
 export default ItemDetail

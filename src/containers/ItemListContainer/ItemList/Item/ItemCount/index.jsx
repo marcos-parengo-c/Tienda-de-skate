@@ -1,12 +1,14 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import { CartContext } from '../../../../../context/cartContext';
 
-const Contador = ({ firstStock, initial, minus, onAdd, plus}) => {
+const Contador = ({ firstStock, initial, onAdd, plus, minus,item}) => {
+    const {cart,setCart} = useContext(CartContext)
     const [contador, setContador] = useState(initial)
     const [stock, setStock] = useState(firstStock)
     const [buttonState, setButtonState] = useState(false)
@@ -17,7 +19,6 @@ const Contador = ({ firstStock, initial, minus, onAdd, plus}) => {
         return () => {  
         }
     }, [firstStock])
-
     return (
         <>
             <p className="card-text">{stock} productos diponibles.</p>
@@ -30,8 +31,7 @@ const Contador = ({ firstStock, initial, minus, onAdd, plus}) => {
                     <Button variant="outline-light" size="lg" block onClick={plus(contador, stock, setContador)}>+</Button>
                 </ButtonGroup>
                 <Button variant="outline-light" size="lg" block disabled={buttonState}
-                    style={{display: display ? 'block' : 'none' }}
-                    onClick={onAdd(contador,stock,setContador,setStock,setButtonState,buttonState,display, setDisplay)}>Add to cart
+                    onClick={onAdd(contador,stock,setContador,setStock,setButtonState,buttonState,display, setDisplay,cart,setCart,item)}>Add to cart
                 </Button>
                 <Button variant="outline-light" size="lg" block
                     style={{display: !display ? 'block' : 'none' }} 
