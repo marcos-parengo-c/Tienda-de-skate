@@ -7,6 +7,7 @@ import ModalItem from './ModalItem';
 
 const MyVerticallyCenteredModal = (props) => {
   const {cart} = useContext(CartContext)
+  
   return (
       <Modal {...props} size="lg"
         aria-labelledby="contained-modal-title-vcenter" centered>

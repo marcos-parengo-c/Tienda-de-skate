@@ -21,7 +21,6 @@ const ItemDetail = () => {
     useEffect(() => {
         setItemARend(FullItem.find(FullItem => FullItem.name === id))
         getItems(itemARend,setItemRecibido)
-        console.log(cart)
         return () => {
         }
     }, [id,FullItem,itemARend,cart])

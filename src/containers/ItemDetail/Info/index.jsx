@@ -23,25 +23,11 @@ const Info = ({ item}) => {
                 </Card.Body>
                 <Card.Footer>
                     <ItemCount firstStock={itemRecibido.stock} initial={0} 
-                    onAdd={onAdd} plus={plus} minus={minus} item={item}/>
+                        plus={plus} minus={minus} item={item}/>
                 </Card.Footer>
             </Card>   
         </Col>      
     )
-}
-
-const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay,cart,setCart,item) => {
-    return () => {
-        if(contador>0){
-            setDisplay(false)
-        }
-        setContador(0);
-        setStock(stock - contador);
-        setCart([...cart,{"Item":item,"Cantidad":contador}])
-        if (stock - contador === 0) {
-            setButtonState(true)
-        }
-    }
 }
 
 const minus = (contador, setContador) => {

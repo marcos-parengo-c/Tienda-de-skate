@@ -20,7 +20,7 @@ const Item = ({ item, is }) => {
                         </Card.Body>
                     </Link>
                     <Card.Footer>
-                       <ItemCount firstStock={item.stock} initial={initial} onAdd={onAdd} plus={plus} minus={minus} item={item}/>
+                       <ItemCount firstStock={item.stock} initial={initial} plus={plus} minus={minus} item={item}/>
                     </Card.Footer>
                 </Card>
             </Col>
@@ -28,30 +28,16 @@ const Item = ({ item, is }) => {
     )
 }
 
-const onAdd = (contador, stock, setContador, setStock, setButtonState, buttonState,display, setDisplay,cart,setCart,item) => {
+const minus = (quantity, setQuantity) => {
     return () => {
-        if(contador>0){
-            setDisplay(false)
-        }
-        setContador(0);
-        setStock(stock - contador);
-        setCart([...cart,{"Item":item,"Cantidad":contador}])
-        if (stock - contador === 0) {
-            setButtonState(true)
-        }
+        if (quantity > 0) { setQuantity(quantity - 1) }
     }
 }
 
-const minus = (contador, setContador) => {
+const plus = (quantity, stock, setQuantity) => {
     return () => {
-        if (contador > 0) { setContador(contador - 1) }
-    }
-}
-
-const plus = (contador, stock, setContador) => {
-    return () => {
-        if (contador < stock) {
-            setContador(contador + 1)
+        if (quantity < stock) {
+            setQuantity(quantity + 1)
         } else { alert('No podes añadir mas de este producto ya que el stock es de ' + stock) }
     }
 }

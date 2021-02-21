@@ -7,12 +7,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { CartContext } from '../../../../../context/cartContext';
 
-const Contador = ({ firstStock, initial, onAdd, plus, minus,item}) => {
-    const {cart,setCart} = useContext(CartContext)
-    const [contador, setContador] = useState(initial)
+const ItemCount = ({ firstStock, initial, plus, minus,item}) => {
+    const {addItem} = useContext(CartContext)
+    const [quantity, setQuantity] = useState(initial)
     const [stock, setStock] = useState(firstStock)
-    const [buttonState, setButtonState] = useState(false)
-    const [display, setDisplay] = useState(true)
+    const [display, setDisplay] = useState(false)
 
     useEffect(() => {
         setStock(firstStock);
@@ -24,17 +23,17 @@ const Contador = ({ firstStock, initial, onAdd, plus, minus,item}) => {
             <p className="card-text">{stock} productos diponibles.</p>
             <div className="d-grid gap-2 col-12 ml-auto mb-2">
                 <ButtonGroup aria-label="Basic example" size="sm">
-                    <Button variant="outline-light" size="lg" block onClick={minus(contador, setContador)}>-</Button>
+                    <Button variant="outline-light" size="lg" block onClick={minus(quantity,setQuantity)}>-</Button>
                     <InputGroup >
-                        <FormControl readOnly value={contador}/>
+                        <FormControl readOnly value={quantity}/>
                     </InputGroup>
-                    <Button variant="outline-light" size="lg" block onClick={plus(contador, stock, setContador)}>+</Button>
+                    <Button variant="outline-light" size="lg" block onClick={plus(quantity,stock,setQuantity)}>+</Button>
                 </ButtonGroup>
-                <Button variant="outline-light" size="lg" block disabled={buttonState}
-                    onClick={onAdd(contador,stock,setContador,setStock,setButtonState,buttonState,display, setDisplay,cart,setCart,item)}>Add to cart
+                <Button variant="outline-light" size="lg" block disabled={stock===0 || quantity===0 ? true : false}
+                    onClick={addItem(item,quantity,setQuantity,stock,setStock,setDisplay)}>Add to cart
                 </Button>
                 <Button variant="outline-light" size="lg" block
-                    style={{display: !display ? 'block' : 'none' }} 
+                    style={{display: display ? 'block' : 'none' }} 
                     as={Link} to={"/cart"}
                     > Go To Cart
                 </Button>
@@ -43,4 +42,4 @@ const Contador = ({ firstStock, initial, onAdd, plus, minus,item}) => {
     )
 }
 
-export default Contador
+export default ItemCount
