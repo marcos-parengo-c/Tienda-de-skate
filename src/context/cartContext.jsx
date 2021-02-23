@@ -2,17 +2,14 @@ import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
-
-
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
-
+    
     const isInCart = (item) => {
         const isDuplicated = (element) => element.Item.name === item.name;
         const index = cart.findIndex(isDuplicated)
         if (index===-1){return [false,index]}else{return[true,index]}
     }
-
     const addItem = (item, quantity, setQuantity, stock, setStock, setDisplay) => {
         return () => {
             if (quantity > 0) {
@@ -28,12 +25,8 @@ export const CartProvider = ({ children }) => {
         }
     }
     const removeItem = (id) => {
-        return () => {
-            const isDuplicated = (element) => element.Item.name === id;
-            const index = cart.findIndex(isDuplicated)
-            if (index !== -1) {
-                cart.splice(index, 1);
-            }
+        return () => {        
+            setCart(cart.filter(cart => cart.Item.name !== id));
         }
     }
     const clearCart = () => {

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import ModalItem from './ModalItem';
 
 const MyVerticallyCenteredModal = (props) => {
-  const {cart} = useContext(CartContext)
+  const {cart,clearCart} = useContext(CartContext)
   
   return (
       <Modal {...props} size="lg"
@@ -20,6 +20,7 @@ const MyVerticallyCenteredModal = (props) => {
         </Modal.Body>
         <Modal.Footer>
             <Button as={Link} to={"/Cart"} onClick={props.onHide} variant="outline-dark">Go to checkout</Button>
+            <Button onClick={clearCart}  variant="outline-dark">Clear Cart</Button>
         </Modal.Footer>
       </Modal>
     );
