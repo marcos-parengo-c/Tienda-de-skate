@@ -19,7 +19,7 @@ const MyVerticallyCenteredModal = (props) => {
           {cart.map((u, i) => { ; return (<ModalItem key={i} cart={u}/>) })}
         </Modal.Body>
         <Modal.Footer>
-            <Button as={Link} to={"/Cart"} onClick={props.onHide} variant="outline-dark">Go to checkout</Button>
+            <Button as={Link} to={"/Checkout"} onClick={props.onHide} variant="outline-dark">Go to checkout</Button>
             <Button onClick={clearCart}  variant="outline-dark">Clear Cart</Button>
         </Modal.Footer>
       </Modal>

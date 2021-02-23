@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import BnavBar from './components/bootsnavbar';
 import ItemListContainer from './containers/ItemListContainer'
 import ItemDetail from './containers/ItemDetail'
-import Cart from './containers/Cart'
+import Checkout from './containers/Checkout'
 import { CartProvider } from './context/cartContext.jsx'
 import { productContext } from './context/productContext.jsx'
 
@@ -147,8 +147,8 @@ const App = () => {
               <Route exact path="/itemDetail/:id">
                 <ItemDetail listaDeItems={listaDeItems} />
               </Route>
-              <Route exact path="/cart">
-                <Cart />
+              <Route exact path="/Checkout">
+                <Checkout />
               </Route>
             </Switch>
           </div>

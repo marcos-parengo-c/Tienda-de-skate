@@ -34,8 +34,8 @@ const ItemCount = ({ firstStock, initial, plus, minus,item}) => {
                 </Button>
                 <Button variant="outline-light" size="lg" block
                     style={{display: display ? 'block' : 'none' }} 
-                    as={Link} to={"/cart"}
-                    > Go To Cart
+                    as={Link} to={"/Checkout"}
+                    > Go to checkout
                 </Button>
             </div>
         </>
