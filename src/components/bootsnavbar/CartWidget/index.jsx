@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Nav from 'react-bootstrap/Nav';
+import { CartContext } from '../../../context/cartContext';
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 
 const CartWidget = () => {
     const [modalShow, setModalShow] = React.useState(false);
+    const {cart} = useContext(CartContext)
+
+    useEffect(() => {
+      return () => {
+      }
+    }, [cart])
     return (
         <>
-        <Nav.Link>
+        <Nav.Link  style={{display: cart.length===0 ? 'none' : 'block' }}>
             <img
-                alt="verga"
+                alt=""
                 src="/images/cart.png"
                 width="30"
                 height="30"
