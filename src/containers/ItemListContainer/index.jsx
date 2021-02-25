@@ -5,6 +5,7 @@ import './index.css';
 import Row from 'react-bootstrap/Row';
 import ItemList from './ItemList'
 import { productContext } from '../../context/productContext';
+import { getFirestore } from '../../firebase';
 
 const ItemListContainer = ({ children, greeting, listaDeItems }) => {
 
@@ -17,9 +18,17 @@ const ItemListContainer = ({ children, greeting, listaDeItems }) => {
             setItems(itemCntxt)
         } else {
             setItems(itemCntxt.filter(items => items.brand === id));
-        } return () => {
         }
-    }, [id,itemCntxt])
+        const baseDeDatos = getFirestore(); 
+        // Guardamos la referencia de la coleccion que queremos tomar
+        const itemCollection = baseDeDatos.collection('productos'); 
+        // Tomando los datos
+        itemCollection.get().then((value) => {
+            value.docs.map(element => { console.log({...element.data(), id:element.id})})
+        })
+        return () => {
+        }
+    }, [id, itemCntxt])
 
     return (
         <div className="container">
