@@ -5,6 +5,7 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
+    const [cantTotal, setCantTotal] = useState(0);
     
     const isInCart = (item) => {
         const isDuplicated = (element) => element.Item.name === item.name;
@@ -22,6 +23,7 @@ export const CartProvider = ({ children }) => {
                 }
                 setTotal(total+(quantity*(item.price)))
                 setStock(stock - quantity);
+                setCantTotal(cantTotal+quantity)
                 setQuantity(0)
             }
         }
@@ -34,7 +36,7 @@ export const CartProvider = ({ children }) => {
     const clearCart = () => {
         setCart([])
     }
-    return <CartContext.Provider value={{ cart, setCart, addItem, clearCart,removeItem,total }}>
+    return <CartContext.Provider value={{ cart, setCart, addItem, clearCart,removeItem,total,cantTotal }}>
         {children}
     </CartContext.Provider>
 }

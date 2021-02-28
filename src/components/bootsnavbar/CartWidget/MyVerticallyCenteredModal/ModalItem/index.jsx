@@ -1,27 +1,30 @@
 import React, { useContext } from 'react'
-import { Button, Col, Container, Row, Card, Accordion } from 'react-bootstrap';
+import { Button, Col, Container, Row, Card, Accordion, ButtonGroup } from 'react-bootstrap';
 import { CartContext } from '../../../../../context/cartContext';
 
 const ModalItem = ({ i, cart }) => {
   const { removeItem } = useContext(CartContext)
   return (
     <Container >
-        <Accordion.Toggle as={Col} eventKey={i.toString()}>
-        <Row>
-          <Col sm={7}>
-            <h4>{cart.Item.name}</h4>
-          </Col>
-          <Col sm={{ span: 1, offset: 4 }}>
-            <Button onClick={removeItem(cart.Item.name)} variant="outline-dark" style={{ float: 'right' }} className="float-right">X</Button>
-          </Col>
-        </Row>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={i.toString()}>
-          <Card.Body>
-            <p>X{cart.Cantidad} productos</p>
-            <p>${cart.Item.price} cada uno, ${(cart.Item.price)*(cart.Cantidad)} en total</p>
-          </Card.Body>
-        </Accordion.Collapse>   
+
+      <Row>
+        <Col>
+          <h4>{cart.Item.name}</h4>
+        </Col>
+        <Col >
+          <ButtonGroup aria-label="Basic example" style={{ float: 'right' }} >
+            <Button onClick={removeItem(cart.Item.name)} variant="outline-dark" style={{ float: 'right' }}>Eliminar articulo</Button>
+            <Accordion.Toggle as={Button} variant="outline-dark" style={{ float: 'right' }} eventKey={i.toString()}>Mostrar detalles</Accordion.Toggle>
+          </ButtonGroup>
+        </Col>
+      </Row>
+
+      <Accordion.Collapse eventKey={i.toString()}>
+        <Card.Body>
+          <p>X{cart.Cantidad} productos</p>
+          <p>${cart.Item.price} cada uno, ${(cart.Item.price) * (cart.Cantidad)} en total</p>
+        </Card.Body>
+      </Accordion.Collapse>
     </Container>
   );
 }

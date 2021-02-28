@@ -19,13 +19,16 @@ const ItemListContainer = ({ children, greeting, listaDeItems }) => {
         } else {
             setItems(itemCntxt.filter(items => items.brand === id));
         }
+        //Parte fireBase
         const baseDeDatos = getFirestore(); 
         // Guardamos la referencia de la coleccion que queremos tomar
         const itemCollection = baseDeDatos.collection('productos'); 
         // Tomando los datos
         itemCollection.get().then((value) => {
-            value.docs.map(element => { console.log({...element.data(), id:element.id})})
+            value.docs.forEach(element => { console.log({...element.data(), id:element.id})})
         })
+        //Fin Parte Firebase
+
         return () => {
         }
     }, [id, itemCntxt])
