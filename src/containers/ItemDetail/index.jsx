@@ -15,15 +15,17 @@ const ItemDetail = () => {
 
     useEffect(() => {
         const baseDeDatos = getFirestore();
-        const itemCollection = baseDeDatos.collection('productos');
-        var query = itemCollection.where("name", "==", id);
-        query.get().then((value) => {
-            let aux = value.docs.map(element => {
-                return ({ ...element.data(), id: element.id })
-            })
-            console.log(aux[0])
-            setItem(aux[0])
-        })
+        var docRef = baseDeDatos.collection("productos").doc(id);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                setItem({...doc.data(), id: doc.id});
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
         return () => {
         }
     }, [id])

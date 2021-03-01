@@ -7,17 +7,17 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { CartContext } from '../../../../context/cartContext';
 
-const ItemCount = ({ firstStock, initial, plus, minus,item}) => {
+const ItemCount = ({ initial, plus, minus,item}) => {
     const {addItem} = useContext(CartContext)
     const [quantity, setQuantity] = useState(initial)
-    const [stock, setStock] = useState(firstStock)
+    const [stock, setStock] = useState(item.stock)
     const [display, setDisplay] = useState(false)
 
     useEffect(() => {
-        setStock(firstStock);
+        setStock(item.stock);
         return () => {  
         }
-    }, [firstStock])
+    }, [item.stock])
 
     return (
         <>
