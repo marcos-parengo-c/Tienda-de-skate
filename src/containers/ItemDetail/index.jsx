@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
@@ -7,23 +7,26 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Carousel from 'react-bootstrap/Carousel';
 import Info from './Info'
-import { productContext } from '../../context/productContext';
-import { CartContext } from '../../context/cartContext';
+import { getFirestore } from '../../firebase';
 
 const ItemDetail = () => {
-    const {cart} = useContext(CartContext)
-    const itemCntxt = useContext(productContext)
-    const [FullItem] = useState(itemCntxt) 
-    const [itemRecibido, setItemRecibido] = useState({})
-    const [itemARend, setItemARend] = useState({})
-    
     const { id } = useParams();
+    const [item, setItem] = useState({})
+
     useEffect(() => {
-        setItemARend(FullItem.find(FullItem => FullItem.name === id))
-        getItems(itemARend,setItemRecibido)
+        const baseDeDatos = getFirestore();
+        const itemCollection = baseDeDatos.collection('productos');
+        var query = itemCollection.where("name", "==", id);
+        query.get().then((value) => {
+            let aux = value.docs.map(element => {
+                return ({ ...element.data(), id: element.id })
+            })
+            console.log(aux[0])
+            setItem(aux[0])
+        })
         return () => {
         }
-    }, [id,FullItem,itemARend,cart])
+    }, [id])
 
     return (
         <div className="container">
@@ -31,34 +34,20 @@ const ItemDetail = () => {
                 <Col sm={6}>
                     <Carousel prevLabel="" nextLabel="" fade={true} className="border border-dark" >
                         <Carousel.Item>
-                            <Image src={itemRecibido.image} alt="asdad" thumbnail className="d-block w-100 border-0" />
+                            <Image src={item.image} alt="asdad" thumbnail className="d-block w-100 border-0" />
                         </Carousel.Item>
                         <Carousel.Item>
-                            <Image src={itemRecibido.image1} thumbnail className="d-block w-100 border-0" />
+                            <Image src={item.image1} thumbnail className="d-block w-100 border-0" />
                         </Carousel.Item>
                         <Carousel.Item>
-                            <Image src={itemRecibido.image2} thumbnail className="d-block w-100 border-0" />
+                            <Image src={item.image2} thumbnail className="d-block w-100 border-0" />
                         </Carousel.Item>
                     </Carousel>
                 </Col>
-                <Info item={itemRecibido} />
+                <Info item={item} />
             </Row>
         </div>
     )
-}
-
-const getItems = (item, setItemRecibido) => {
-    const promesa = new Promise((result, reject) => {
-        setTimeout(function () { result(item) }, 500);
-    })
-    promesa.then(result => {
-        setItemRecibido(result)
-    }, err => {
-        console.log(err)
-    }).catch(err => {
-        console.log("atrapado")
-    }).finally(() => {
-    })
 }
 
 export default ItemDetail

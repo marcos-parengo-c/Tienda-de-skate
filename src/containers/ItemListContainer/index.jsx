@@ -17,20 +17,9 @@ const ItemListContainer = ({ children, greeting, listaDeItems }) => {
         } else {
             setcategoryId(id);
         }
-        //Parte fireBase
-        // const baseDeDatos = getFirestore(); 
-        // // Guardamos la referencia de la coleccion que queremos tomar
-        // const itemCollection = baseDeDatos.collection('productos'); 
-        // // Tomando los datos
-        // itemCollection.get().then((value) => {
-        //     value.docs.forEach(element => { console.log({...element.data(), id:element.id})})
-        // })
-        //Fin Parte Firebase
-
         return () => {
         }
     }, [id])
-
     return (
         <div className="container">
             <Row>
@@ -39,5 +28,4 @@ const ItemListContainer = ({ children, greeting, listaDeItems }) => {
         </div>
     )
 }
-
 export default ItemListContainer

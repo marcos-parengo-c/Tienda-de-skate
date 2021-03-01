@@ -9,7 +9,6 @@ import { getFirestore } from '../../../firebase';
 const ItemList = ({ id }) => {
 
     const [item, setItem] = useState([])
-
     useEffect(() => {
         const baseDeDatos = getFirestore();
         const itemCollection = baseDeDatos.collection('productos');
@@ -18,7 +17,6 @@ const ItemList = ({ id }) => {
                 let aux = value.docs.map(element => {
                     return ({ ...element.data(), id: element.id })
                 })
-                console.log(aux)
                 setItem(aux)
             })
         } else {
@@ -27,7 +25,6 @@ const ItemList = ({ id }) => {
                 let aux = value.docs.map(element => {
                     return ({ ...element.data(), id: element.id })
                 })
-                console.log(aux)
                 setItem(aux)
             })
         }
