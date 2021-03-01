@@ -28,15 +28,16 @@ export const CartProvider = ({ children }) => {
             }
         }
     }
-    const removeItem = (id) => {
+    const removeItem = (item,quantity) => {
         return () => {        
-            setCart(cart.filter(cart => cart.Item.name !== id));
+            setTotal(total-(quantity*(item.price)))
+            setCart(cart.filter(cart => cart.Item.name !== item.name));
         }
     }
     const clearCart = () => {
         setCart([])
     }
-    return <CartContext.Provider value={{ cart, setCart, addItem, clearCart,removeItem,total,cantTotal }}>
+    return <CartContext.Provider value={{ cart, setCart, addItem, clearCart,removeItem,total,cantTotal,isInCart }}>
         {children}
     </CartContext.Provider>
 }

@@ -8,16 +8,21 @@ import FormControl from 'react-bootstrap/FormControl';
 import { CartContext } from '../../../../context/cartContext';
 
 const ItemCount = ({ initial, plus, minus,item}) => {
-    const {addItem} = useContext(CartContext)
+    const {addItem,isInCart,cart} = useContext(CartContext)
     const [quantity, setQuantity] = useState(initial)
     const [stock, setStock] = useState(item.stock)
     const [display, setDisplay] = useState(false)
 
-    useEffect(() => {
-        setStock(item.stock);
+    useEffect(() => {   
+        if(isInCart(item)[0]===true){
+            setStock((item.stock)-cart[isInCart(item)[1]].Cantidad)
+        }else{
+            setStock(item.stock);
+            setDisplay(false)
+        }
         return () => {  
         }
-    }, [item.stock])
+    }, [item,stock,cart])
 
     return (
         <>

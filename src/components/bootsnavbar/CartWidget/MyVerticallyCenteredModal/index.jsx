@@ -10,7 +10,7 @@ const MyVerticallyCenteredModal = (props) => {
   useEffect(() => {
     return () => {
     }
-  }, [cart])
+  }, [cart,total])
 
   return (
     <Modal {...props} size="lg"

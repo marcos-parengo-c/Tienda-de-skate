@@ -7,17 +7,23 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { CartContext } from '../../../../../context/cartContext';
 
-const ItemCount = ({ firstStock, initial, plus, minus,item}) => {
-    const {addItem} = useContext(CartContext)
+const ItemCount = ({ initial, plus, minus,item}) => {
+    const {addItem,isInCart,cart} = useContext(CartContext)
     const [quantity, setQuantity] = useState(initial)
-    const [stock, setStock] = useState(firstStock)
+    const [stock, setStock] = useState(item.stock)
     const [display, setDisplay] = useState(false)
 
-    useEffect(() => {
-        setStock(firstStock);
+    useEffect(() => {   
+        if(isInCart(item)[0]===true){
+            setStock((item.stock)-cart[isInCart(item)[1]].Cantidad)
+        }else{
+            setStock(item.stock);
+            setDisplay(false)
+        }
         return () => {  
         }
-    }, [firstStock])
+    }, [item,stock,cart])
+
     return (
         <>
             <p className="card-text">{stock} productos diponibles.</p>
@@ -34,9 +40,7 @@ const ItemCount = ({ firstStock, initial, plus, minus,item}) => {
                 </Button>
                 <Button variant="outline-light" size="lg" block
                     style={{display: display ? 'block' : 'none' }} 
-                    as={Link} to={"/Checkout"}
-                    > Go to checkout
-                </Button>
+                    as={Link} to={"/cart"} > Go To Cart </Button>
             </div>
         </>
     )

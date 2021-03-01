@@ -13,7 +13,7 @@ const ModalItem = ({ i, cart }) => {
         </Col>
         <Col >
           <ButtonGroup aria-label="Basic example" style={{ float: 'right' }} >
-            <Button onClick={removeItem(cart.Item.name)} variant="outline-dark" style={{ float: 'right' }}>Eliminar articulo</Button>
+            <Button onClick={removeItem(cart.Item,cart.Cantidad)} variant="outline-dark" style={{ float: 'right' }}>Eliminar articulo</Button>
             <Accordion.Toggle as={Button} variant="outline-dark" style={{ float: 'right' }} eventKey={i.toString()}>Mostrar detalles</Accordion.Toggle>
           </ButtonGroup>
         </Col>
