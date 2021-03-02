@@ -16,6 +16,7 @@ const ItemCount = ({ initial, plus, minus,item}) => {
     useEffect(() => {   
         if(isInCart(item)[0]===true){
             setStock((item.stock)-cart[isInCart(item)[1]].Cantidad)
+            setDisplay(true)
         }else{
             setStock(item.stock);
             setDisplay(false)
@@ -40,7 +41,7 @@ const ItemCount = ({ initial, plus, minus,item}) => {
                 </Button>
                 <Button variant="outline-light" size="lg" block
                     style={{display: display ? 'block' : 'none' }} 
-                    as={Link} to={"/cart"} > Go To Cart </Button>
+                    as={Link} to={"/checkout"} > Go To Checkout </Button>
             </div>
         </>
     )
