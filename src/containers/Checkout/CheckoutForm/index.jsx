@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button, Col, Row } from 'react-bootstrap';
+import { Form, Button, Col, Row, OverlayTrigger, Tooltip, Overlay } from 'react-bootstrap';
 import { CartContext } from '../../../context/cartContext';
 import { getFirestore } from '../../../firebase';
 
 const CheckoutForm = () => {
-    const { cart,clearCart } = useContext(CartContext)
+    const { cart, clearCart } = useContext(CartContext)
     const provincias = ["Buenos Aires", "Catamarca", "Chaco", "Chubut", "Ciudad Autonoma de Buenos Aires", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy",
         "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis",
         "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego, Antártida e Isla del Atlántico Sur", "Tucumán"]
@@ -25,7 +25,7 @@ const CheckoutForm = () => {
     const handleSubmit = (event) => {
         console.log(cart.length)
         if (cart.length !== 0) {
-            data.items=cart;
+            data.items = cart;
             const baseDeDatos = getFirestore();
             const comprasCollection = baseDeDatos.collection('compras');
             comprasCollection.add(data)
@@ -45,7 +45,6 @@ const CheckoutForm = () => {
             history.push("/");
         }
     };
-
     return (
         <Form className="border p-3" onSubmit={handleSubmit}>
             <Row>
@@ -98,9 +97,11 @@ const CheckoutForm = () => {
             <Form.Group id="formTyC" className="mt-3">
                 <Form.Check type="checkbox" label="Acepto los terminos y condiciones" required />
             </Form.Group>
-            <Button variant="outline-dark" type="submit" className="mt-3">
-                Submit
-            </Button>
+            <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-disabled">El carrito debe tener como minimo un articulo!</Tooltip>}>
+                <span className="d-inline-block">
+                    <Button variant="outline-dark" type="submit" className="mt-3" disabled={cart.length === 0 ? true : false}>Submit</Button>
+                </span>
+            </OverlayTrigger>
         </Form>
     )
 }
