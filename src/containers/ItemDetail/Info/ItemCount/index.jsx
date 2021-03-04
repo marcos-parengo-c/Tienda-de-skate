@@ -23,7 +23,7 @@ const ItemCount = ({ initial, plus, minus,item}) => {
         }
         return () => {  
         }
-    }, [item,stock,cart])
+    }, [item,stock,cart,isInCart])
 
     return (
         <>

@@ -31,7 +31,7 @@ const MyVerticallyCenteredModal = (props) => {
         <Accordion>
           {cart.map((u, i) => { ; return (<ModalItem key={i} cart={u} i={i} />) })}
         </Accordion>
-        <h1 style={{ display: cart.length === 0 ? 'block' : 'none' }}>Empty Cart v.v</h1>
+        <h2 style={{ display: cart.length === 0 ? 'block' : 'none' }}>Empty Cart v.v</h2>
       </Modal.Body>
       <Modal.Footer>
         <Container >

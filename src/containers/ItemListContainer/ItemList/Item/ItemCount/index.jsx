@@ -1,5 +1,4 @@
 import React, { useState,useEffect,useContext } from 'react';
-import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -23,7 +22,7 @@ const ItemCount = ({ initial, plus, minus,item}) => {
         }
         return () => {  
         }
-    }, [item,stock,cart])
+    }, [item,stock,cart,isInCart])
     return (
         <>
             <p className="card-text">{stock} productos diponibles.</p>
@@ -36,11 +35,8 @@ const ItemCount = ({ initial, plus, minus,item}) => {
                     <Button variant="outline-light" size="lg" block onClick={plus(quantity,stock,setQuantity)}>+</Button>
                 </ButtonGroup>
                 <Button variant="outline-light" size="lg" block disabled={stock===0 || quantity===0 ? true : false}
-                    onClick={addItem(item,quantity,setQuantity,stock,setStock,setDisplay)}>Add to cart
+                    onClick={addItem(item,quantity,setQuantity,stock,setStock,setDisplay,display)}>Add to cart
                 </Button>
-                <Button variant="outline-light" size="lg" block
-                    style={{display: display ? 'block' : 'none' }} 
-                    as={Link} to={"/checkout"} > Go To Checkout </Button>
             </div>
         </>
     )

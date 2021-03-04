@@ -5,8 +5,7 @@ import { CartContext } from '../../../../../context/cartContext';
 const ModalItem = ({ i, cart }) => {
   const { removeItem } = useContext(CartContext)
   return (
-    <Container >
-
+    <Container className="p-3">
       <Row>
         <Col>
           <h4>{cart.Item.name}</h4>
@@ -18,7 +17,6 @@ const ModalItem = ({ i, cart }) => {
           </ButtonGroup>
         </Col>
       </Row>
-
       <Accordion.Collapse eventKey={i.toString()}>
         <Card.Body>
           <p>X{cart.Cantidad} productos</p>

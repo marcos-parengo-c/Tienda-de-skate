@@ -1,19 +1,20 @@
 import React, { useContext,useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CartContext } from '../../context/cartContext';
-import { Button } from 'react-bootstrap';
 import CheckoutForm from './CheckoutForm';
+import CheckoutAccordion from './CheckoutAccordion';
+
 
 const Checkout = () => {
-    const {clearCart,cart} = useContext(CartContext)
+    const {cart,total} = useContext(CartContext)
     useEffect(() => {
         return () => {
         }
-    }, [cart])
+    }, [cart,total])
     return (
         <div className="container">
             <CheckoutForm/>
-            <Button onClick={clearCart}  variant="outline-dark">Clear Cart</Button>
+            <CheckoutAccordion />
         </div>
     )
 }
