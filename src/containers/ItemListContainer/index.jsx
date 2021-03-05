@@ -4,28 +4,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Row from 'react-bootstrap/Row';
 import ItemList from './ItemList'
+// import { getFirestore } from '../../firebase';
 
 const ItemListContainer = ({ children, greeting, listaDeItems }) => {
 
     const { id } = useParams();
-    const [items, setItems] = useState(listaDeItems)
+    const [categoryId, setcategoryId] = useState()
 
     useEffect(() => {
         if (typeof id === 'undefined') {
-            setItems(listaDeItems)
+            setcategoryId(true)
         } else {
-            setItems(listaDeItems.filter(items => items.brand === id));
-        } return () => {
+            setcategoryId(id);
         }
-    }, [id,listaDeItems])
-
+        return () => {
+        }
+    }, [id])
     return (
         <div className="container">
             <Row>
-                <ItemList itemProp={items} />
+                <ItemList id={categoryId} />
             </Row>
         </div>
     )
 }
-
 export default ItemListContainer
